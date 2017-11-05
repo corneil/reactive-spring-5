@@ -1,0 +1,25 @@
+@startuml
+hide footbox
+Browser -> WebServer: HttpGetRequest
+activate WebServer
+WebServer -> Controller: listUsers
+activate Controller
+Controller -> Service : listUsers
+activate Service
+Service -> Repository : listUsers
+activate Repository
+Repository -> DatabaseTechnology : query
+activate DatabaseTechnology
+== First Response ==
+DatabaseTechnology -->> Repository
+deactivate DatabaseTechnology
+Repository -->> Service
+deactivate Repository
+Service -->> Controller
+deactivate Service
+Controller -->> WebServer
+deactivate Controller
+WebServer -->> Browser
+deactivate WebServer
+
+@enduml

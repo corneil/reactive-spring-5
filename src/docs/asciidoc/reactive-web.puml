@@ -1,0 +1,32 @@
+@startuml
+hide footbox
+
+== Setup Call ==
+Browser -\\ WebServer: HttpGetRequest
+activate WebServer
+WebServer -\\ Controller: listUsers
+activate Controller
+Controller -\\ Service : listUsers
+activate Service
+Service -\\ Repository : listUsers
+activate Repository
+Repository -\\ DatabaseTechnology : query
+activate DatabaseTechnology
+DatabaseTechnology --\\ Repository : Flux<>
+Repository --\\ Service : Flux<>
+Service --\\ Controller : Flux<>
+Controller --\\ WebServer : Flux<>
+
+== First Response ==
+DatabaseTechnology -\\ Repository
+deactivate DatabaseTechnology
+Repository -\\ Service
+deactivate Repository
+Service -\\ Controller
+deactivate Service
+Controller -\\ WebServer
+deactivate Controller
+WebServer --\\ Browser
+deactivate WebServer
+
+@enduml
