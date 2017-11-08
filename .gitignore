@@ -24,3 +24,8 @@ dist/
 nbdist/
 .nb-gradle/
 .idea/
+/non-reactive.log
+/reactive-web/reactive.log
+/.runConfigurations/
+/scripts/ext-output.json
+/nonreactive-web/non-reactive.log

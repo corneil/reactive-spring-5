@@ -1,11 +1,3 @@
-# Reactive Spring 5
-
-## Introduction
-
-
-## Mongo Setup
-
-```
 use
 admin
 db.createUser(
@@ -16,7 +8,9 @@ db.createUser(
     }
 )
 
-use locs
+
+use
+locs
 db.createUser(
     {
         user: "user",
@@ -24,18 +18,3 @@ db.createUser(
         roles: [{role: "readWrite", db: "locs"}]
     }
 )
-```
-
-## TODO
-
-* ~~Data model~~
-* ~~Repositories~~
-* ~~Populate database~~
-* ~~Services~~
-* ~~Controllers~~
-* Fetch scripts
-* Reactive Repositories
-* Reactive Services
-* Reactive Controllers
-
-
