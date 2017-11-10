@@ -1,0 +1,9 @@
+@startuml
+hide footbox
+
+Subscriber --> Subscription : request
+Subscription --> Publisher
+
+Publisher --\\ Subscriber : onNext
+
+@enduml

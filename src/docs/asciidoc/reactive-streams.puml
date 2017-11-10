@@ -1,0 +1,27 @@
+@startuml
+
+interface Subscriber<T> {
+    onComplete() : void
+    onError(Throwable t) : void
+    onNext(T t) : void
+    onSubscribe(Subscription s) : void
+
+}
+interface Publisher<T> {
+    subscribe(Subscriber<T> s) : void
+}
+
+interface Subscription {
+    cancel() : void
+    request(long n) : void
+}
+
+interface Processor<T,R> {
+}
+
+Processor -down-|> Subscriber
+Processor -right-|> Publisher
+
+Publisher -right-> Subscription : <<creates>>
+
+@enduml

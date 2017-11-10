@@ -23,25 +23,25 @@ public class LocationHistoryController {
 	}
 
 	@GetMapping(path = "/last30days")
-	public ResponseEntity<Collection<LocationHistory>> findLast30Days() {
+	public Collection<LocationHistory> findLast30Days() {
 		try {
 			log.info(">>findLast30Days");
 			Date endDate = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
 			Date startDate = Date.from(LocalDateTime.now().minusDays(30).atZone(ZoneId.systemDefault()).toInstant());
-			return ResponseEntity.ok(locationHistoryInterface.findByDates(startDate, endDate));
+			return locationHistoryInterface.findByDates(startDate, endDate);
 		} finally {
 			log.info("<<findLast30Days");
 		}
 	}
 
 	@GetMapping(path = "/extlast30days")
-	public ResponseEntity<Collection<ExtendedLocationHistory>> findExtendedLast30Days() {
+	public Collection<ExtendedLocationHistory> findExtendedLast30Days() {
 		try {
 			log.info(">>findExtendedLast30Days");
 
 			Date endDate = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
 			Date startDate = Date.from(LocalDateTime.now().minusDays(30).atZone(ZoneId.systemDefault()).toInstant());
-			return ResponseEntity.ok(locationHistoryInterface.findAndConvert(startDate, endDate));
+			return locationHistoryInterface.findAndConvert(startDate, endDate);
 		} finally {
 			log.info("<<findExtendedLast30Days");
 		}

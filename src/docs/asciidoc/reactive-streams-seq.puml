@@ -1,0 +1,10 @@
+@startuml
+hide footbox
+
+Subscriber --> Publisher : subsribe
+create Subscription
+    Publisher --> Subscription : new
+
+Publisher --\\ Subscriber : onSubscribe(s)
+
+@enduml

@@ -1,7 +1,6 @@
 @startuml
 hide footbox
 
-== Setup Call ==
 Browser -\\ WebServer: HttpGetRequest
 activate WebServer
 WebServer -\\ Controller: listUsers
@@ -16,8 +15,11 @@ DatabaseTechnology --\\ Repository : Flux<>
 Repository --\\ Service : Flux<>
 Service --\\ Controller : Flux<>
 Controller --\\ WebServer : Flux<>
-
-== First Response ==
+DatabaseTechnology -->> DatabaseTechnology
+note left
+Database
+processing
+end note
 DatabaseTechnology -\\ Repository
 deactivate DatabaseTechnology
 Repository -\\ Service

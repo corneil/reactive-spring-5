@@ -33,9 +33,10 @@ db.createUser(
 * ~~Populate database~~
 * ~~Services~~
 * ~~Controllers~~
-* Fetch scripts
-* Reactive Repositories
-* Reactive Services
-* Reactive Controllers
+* ~~Fetch scripts~~
+* ~~Reactive Repositories~~
+* ~~Reactive Services~~
+* ~~Reactive Controllers~~
+
 
 

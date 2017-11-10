@@ -10,7 +10,13 @@ Service -> Repository : listUsers
 activate Repository
 Repository -> DatabaseTechnology : query
 activate DatabaseTechnology
-== First Response ==
+DatabaseTechnology -->> DatabaseTechnology
+note left
+
+Database
+processing
+
+end note
 DatabaseTechnology -->> Repository
 deactivate DatabaseTechnology
 Repository -->> Service
