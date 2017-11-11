@@ -1,9 +1,16 @@
 @startuml
 hide footbox
 
-Subscriber --> Subscription : request
+Subscriber --> Subscription : request(n)
 Subscription --> Publisher
 
-Publisher --\\ Subscriber : onNext
 
+loop until done
+    alt success
+        Publisher --\\ Subscriber : onNext(item)
+    else error
+        Publisher --\\ Subscriber : onError(x)
+    end
+end
+Publisher --\\ Subscriber : onComplete
 @enduml
