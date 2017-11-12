@@ -5,6 +5,12 @@
 This repository is used as part of a presentation on Reactive Spring 5.
 The presentation is aimed as gentle introduction to Reactive Spring 5 while illustrating some real-world benefits.
 
+## Requirements
+
+* Java 8
+* MongoDB 3.x
+* curl
+
 ## Mongo Setup
 
 ```
@@ -44,7 +50,7 @@ Populate the database using: `./gradlew -Dtest.single=PopulateDatabaseManual :no
 
 ### Scripts
 
-The `scrtips` folder contains scripts that use `curl` to perform measurements of the rest calls.
+The `scripts` folder contains scripts that use `curl` to perform measurements of the rest calls.
 
 
 
