@@ -31,7 +31,7 @@ public class PopulateDatabaseManual {
 		double lastX = (random.nextGaussian() * 360.0) - 180.0;
 		double lastY = (random.nextGaussian() * 180.0) - 90.0;
 		long startTime = System.currentTimeMillis() - thirtyDays + (random.nextLong() % thirtyDays);
-		final int entries = 1000;
+		final int entries = 10000;
 		long timeInc = (System.currentTimeMillis() - startTime) / entries;
 		if (timeInc < 1) {
 			timeInc = 1;

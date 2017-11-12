@@ -6,8 +6,7 @@
 ## Mongo Setup
 
 ```
-use
-admin
+use admin
 db.createUser(
     {
         user: "admin",
