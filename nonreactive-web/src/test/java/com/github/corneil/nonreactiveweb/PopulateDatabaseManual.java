@@ -32,13 +32,8 @@ public class PopulateDatabaseManual {
 		double lastY = (random.nextGaussian() * 180.0) - 90.0;
 		long startTime = System.currentTimeMillis() - thirtyDays + (random.nextLong() % thirtyDays);
 		final int entries = 10000;
-		long timeInc = (System.currentTimeMillis() - startTime) / entries;
-		if (timeInc < 1) {
-			timeInc = 1;
-		}
 		Collection<LocationHistory> items = new ArrayList<>();
-		for (int i = 0; i < 1000; i++) {
-
+		for (int i = 0; i < entries; i++) {
 			if (random.nextBoolean()) {
 				lastX += random.nextGaussian();
 			} else {
@@ -56,10 +51,14 @@ public class PopulateDatabaseManual {
 				lastY = (lastY % 90.0) * -1.0;
 			}
 			log.info("X={},Y={}", lastX, lastY);
+			Date timestamp = new Date(startTime + i);
+			if (timestamp.after(new Date())) {
+				log.error("timestamp:{}", timestamp);
+			}
 			LocationHistory history = new LocationHistory(
-											UUID.randomUUID().toString(),
-											new Date(startTime + (timeInc * i)),
-											new GeoJsonPoint(lastX, lastY));
+				UUID.randomUUID().toString(),
+				timestamp,
+				new GeoJsonPoint(lastX, lastY));
 			items.add(history);
 			if (items.size() > 100) {
 				locationHistoryRepository.save(items);

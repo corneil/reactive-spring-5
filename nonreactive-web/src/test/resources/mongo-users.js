@@ -1,5 +1,4 @@
-use
-admin
+use admin
 db.createUser(
     {
         user: "admin",
@@ -9,8 +8,7 @@ db.createUser(
 )
 
 
-use
-locs
+use locs
 db.createUser(
     {
         user: "user",
