@@ -7,5 +7,5 @@ import java.util.Collection;
 import java.util.Date;
 
 public interface LocationHistoryRepository extends CrudRepository<LocationHistory, String> {
-	Collection<LocationHistory> findByTimestampBetween(Date startDate, Date endDate);
+  Collection<LocationHistory> findByTimestampBetween(Date startDate, Date endDate);
 }

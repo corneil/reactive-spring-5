@@ -13,19 +13,17 @@ import java.util.Date;
 @Data
 @Document(collection = "location_history")
 public class LocationHistory {
-	@Id
-	private String id;
-	@Indexed
-	private Date timestamp;
-	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE, name = "location")
-	private GeoJsonPoint location;
+  @Id private String id;
+  @Indexed private Date timestamp;
 
-	public LocationHistory(String id, Date timestamp, GeoJsonPoint location) {
-		this.id = id;
-		this.timestamp = timestamp;
-		this.location = location;
-	}
+  @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE, name = "location")
+  private GeoJsonPoint location;
 
-	public LocationHistory() {
-	}
+  public LocationHistory(String id, Date timestamp, GeoJsonPoint location) {
+    this.id = id;
+    this.timestamp = timestamp;
+    this.location = location;
+  }
+
+  public LocationHistory() {}
 }
