@@ -34,7 +34,6 @@ public class PopulateDatabaseManual {
 		final int entries = 10000;
 		Collection<LocationHistory> items = new ArrayList<>();
 		for (int i = 0; i < entries; i++) {
-
 			if (random.nextBoolean()) {
 				lastX += random.nextGaussian();
 			} else {
