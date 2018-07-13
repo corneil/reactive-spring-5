@@ -1,4 +1,7 @@
 buildscript {
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+    }
     repositories {
         mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
@@ -17,26 +20,29 @@ repositories {
 }
 
 
-apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 
 sourceCompatibility = 1.8
 
 configurations {
-    // exclude Reactor Netty
-    compile.exclude module: 'spring-boot-starter-reactor-netty'
+    compile {
+        exclude module: 'logback-classic'
+        exclude module: 'log4j-api'
+    }
 }
-
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
     compile 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
     compile 'org.slf4j:slf4j-ext'
-    compile 'org.springframework.boot:spring-boot-starter-jetty'
-    runtime 'org.eclipse.jetty:jetty-alpn-conscrypt-server'
-    runtime 'org.eclipse.jetty.http2:http2-server'
+    compile 'org.slf4j:slf4j-nop'
+    compile 'org.codehaus.groovy:groovy-all'
+    compile 'com.squareup.okhttp3:okhttp:3.10.0'
+
+
+
     testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile 'io.projectreactor:reactor-test'
     testCompile 'org.projectlombok:lombok'
 }

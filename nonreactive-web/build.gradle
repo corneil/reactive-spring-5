@@ -1,21 +1,22 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.8.RELEASE'
-	}
-	repositories {
-		jcenter()
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 repositories {
-	jcenter()
-	mavenCentral()
+    jcenter()
+    mavenCentral()
 }
 
+configurations {
+    // exclude Reactor Netty
+    compile.exclude module: 'spring-boot-starter-reactor-netty'
+}
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
@@ -23,14 +24,19 @@ apply plugin: 'org.springframework.boot'
 sourceCompatibility = 1.8
 
 dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
-	compile 'org.springframework.boot:spring-boot-starter-web'
-	compile 'org.slf4j:slf4j-ext'
-	compileOnly 'org.projectlombok:lombok'
-	testCompile 'org.springframework.boot:spring-boot-starter-test'
-	testCompile 'org.projectlombok:lombok'
+    compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    runtime 'org.eclipse.jetty:jetty-alpn-conscrypt-server'
+    runtime 'org.eclipse.jetty.http2:http2-server'
+
+    compile 'org.slf4j:slf4j-ext'
+    testCompile 'joda-time:joda-time'
+    compileOnly 'org.projectlombok:lombok'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.projectlombok:lombok'
 }
 
 test {
-	include '**/*Test.java', '**/*Tests.java'
+    include '**/*Test.java', '**/*Tests.java'
 }

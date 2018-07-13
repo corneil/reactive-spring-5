@@ -1,16 +1,26 @@
 buildscript {
-	repositories {
-		jcenter()
-		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
-	}
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 
 
 
 allprojects {
-	group = 'com.github.corneil'
-	version = '1.0-SNAPSHOT'
+    group = 'com.github.corneil'
+    version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'io.spring.dependency-management'
 }

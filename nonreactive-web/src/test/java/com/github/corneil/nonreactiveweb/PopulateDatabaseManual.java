@@ -3,6 +3,7 @@ package com.github.corneil.nonreactiveweb;
 import com.github.corneil.nonreactiveweb.model.LocationHistory;
 import com.github.corneil.nonreactiveweb.repository.LocationHistoryRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.time.LocalDateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -27,12 +28,13 @@ public class PopulateDatabaseManual {
 
 	@Test
 	public void createEntries() {
+		LocalDateTime now = LocalDateTime.now();
 		final long thirtyDays = 30L * 24L * 3600L * 1000L;
 		double lastX = (random.nextGaussian() * 360.0) - 180.0;
 		double lastY = (random.nextGaussian() * 180.0) - 90.0;
-		long startTime = System.currentTimeMillis() - thirtyDays + (random.nextLong() % thirtyDays);
+		LocalDateTime startTime = now.minusDays(random.nextInt(30));
 		final int entries = 10000;
-		Collection<LocationHistory> items = new ArrayList<>();
+		List<LocationHistory> items = new ArrayList<>();
 		for (int i = 0; i < entries; i++) {
 
 			if (random.nextBoolean()) {
@@ -52,7 +54,7 @@ public class PopulateDatabaseManual {
 				lastY = (lastY % 90.0) * -1.0;
 			}
 			log.info("X={},Y={}", lastX, lastY);
-			Date timestamp = new Date(startTime + i);
+			Date timestamp = startTime.plusMinutes(i).toDate();
 			if (timestamp.after(new Date())) {
 				log.error("timestamp:{}", timestamp);
 			}
@@ -62,12 +64,12 @@ public class PopulateDatabaseManual {
 				new GeoJsonPoint(lastX, lastY));
 			items.add(history);
 			if (items.size() > 100) {
-				locationHistoryRepository.save(items);
+				locationHistoryRepository.saveAll(items);
 				items.clear();
 			}
 		}
 		if (!items.isEmpty()) {
-			locationHistoryRepository.save(items);
+			locationHistoryRepository.saveAll(items);
 		}
 	}
 }
