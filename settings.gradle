@@ -1,3 +1,21 @@
-include ':reactive-web'
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven {
+            url "https://dl.bintray.com/kotlin/kotlin-dev/"
+        }
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "org.jetbrains.kotlin.jvm") {
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
+            }
+        }
+    }
+}
+include ':model'
 include ':nonreactive-web'
+include ':reactive-web'
+include ':reactive-kotlin'
 include ':load-generator'
+include ':reactive-fu'

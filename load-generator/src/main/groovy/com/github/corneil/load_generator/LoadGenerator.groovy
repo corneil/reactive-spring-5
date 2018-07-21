@@ -1,3 +1,6 @@
+package com.github.corneil.load_generator
+
+import groovy.json.JsonSlurper
 import org.springframework.web.reactive.function.client.WebClient
 
 import java.util.concurrent.ConcurrentHashMap
@@ -5,9 +8,18 @@ import java.util.concurrent.ConcurrentHashMap
 class LoadGeneratorClient {
     WebClient client = WebClient.create('http://localhost:8080/extlast30days')
 
+    int countResults() {
+
+        def result = new JsonSlurper().parseText(client.get().exchange().block().bodyToMono(String).block())
+        if (result instanceof Collection) {
+            return result.size()
+        }
+        return result.length
+    }
+
     long performRequest() {
         long startTime = System.nanoTime()
-        client.get().exchange().block()
+        client.get().exchange().block().bodyToMono(String).block()
         return System.nanoTime() - startTime
     }
 
@@ -28,7 +40,7 @@ static double average(Collection collection) {
     return (total / (double) collection.size()) / 1000000.0
 }
 
-def totalPermutations = 200
+def totalPermutations = 50
 def permutations = [:]
 [1, 2, 5, 10, 20, 50, 100, 200].each {
     if (it < totalPermutations) {
@@ -39,6 +51,8 @@ def permutations = [:]
 println "Warming up"
 def lg = new LoadGeneratorClient()
 lg.invokeLoad(2)
+def count =  lg.countResults()
+println "$count entries found"
 long startTime = System.currentTimeMillis()
 permutations.each { entry ->
     int clients = entry.key

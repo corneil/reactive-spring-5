@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: 'java-library'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile 'org.springframework.data:spring-data-mongodb'
+
+    compile 'org.slf4j:slf4j-ext'
+    testCompile 'joda-time:joda-time'
+    compileOnly 'org.projectlombok:lombok'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:$springBootVersion")
+    }
+}

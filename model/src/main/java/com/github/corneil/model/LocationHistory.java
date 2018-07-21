@@ -1,4 +1,4 @@
-package com.github.corneil.reactivespring5.model;
+package com.github.corneil.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -16,6 +17,7 @@ public class LocationHistory {
 	@Id
 	private String id;
 	@Indexed
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private Date timestamp;
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE, name = "location")
 	private GeoJsonPoint location;

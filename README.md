@@ -36,6 +36,7 @@ db.createUser(
 ## Running
 
 ### Start MongoDB
+
 Start mongodb with `mongod --dbpath <folder>` with folder on a slow drive. 
 This will allow for a pronounced difference between non-reactive and reactive tests.
 
@@ -48,10 +49,20 @@ Populate the database using: `./gradlew -Dtest.single=PopulateDatabaseManual :no
 ### Run reactive version
 `./gradlew :reactive-web:bootRun`
 
+### Run Kotlin Reactive version
+`./gradelw :reactive-kotlin:bootRun`
+
+### Run Spring Fu version
+`./gradlew :reactive-fu:bootRun`
+
 ### Scripts
+
 
 The `scripts` folder contains scripts that use `curl` to perform measurements of the rest calls.
 
+OR
 
-
-
+```bash
+http http://localhost:8080/last30days
+http http://localhost:8080/extlast30days
+```

@@ -15,7 +15,9 @@ repositories {
 
 configurations {
     // exclude Reactor Netty
-    compile.exclude module: 'spring-boot-starter-reactor-netty'
+    if (webServer != 'Default') {
+        compile.exclude module: 'spring-boot-starter-tomcat'
+    }
 }
 
 apply plugin: 'java'
@@ -24,11 +26,16 @@ apply plugin: 'org.springframework.boot'
 sourceCompatibility = 1.8
 
 dependencies {
+    compile project(':model')
     compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
     compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-jetty'
-    runtime 'org.eclipse.jetty:jetty-alpn-conscrypt-server'
-    runtime 'org.eclipse.jetty.http2:http2-server'
+    if (webServer == 'Jetty') {
+        compile 'org.springframework.boot:spring-boot-starter-jetty'
+        runtime 'org.eclipse.jetty:jetty-alpn-conscrypt-server'
+        runtime 'org.eclipse.jetty.http2:http2-server'
+    } else if(webServer == 'Undertow') {
+        compile 'org.springframework.boot:spring-boot-starter-undertow'
+    }
 
     compile 'org.slf4j:slf4j-ext'
     testCompile 'joda-time:joda-time'

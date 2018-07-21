@@ -1,6 +1,6 @@
 package com.github.corneil.reactivespring5.repository;
 
-import com.github.corneil.reactivespring5.model.LocationHistory;
+import com.github.corneil.model.LocationHistory;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 

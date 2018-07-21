@@ -1,6 +1,7 @@
 package com.github.corneil.nonreactiveweb;
 
-import com.github.corneil.nonreactiveweb.model.LocationHistory;
+
+import com.github.corneil.model.LocationHistory;
 import com.github.corneil.nonreactiveweb.repository.LocationHistoryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.LocalDateTime;
@@ -71,5 +72,6 @@ public class PopulateDatabaseManual {
 		if (!items.isEmpty()) {
 			locationHistoryRepository.saveAll(items);
 		}
+		System.out.println(String.format("Database contains %d entries", locationHistoryRepository.count()));
 	}
 }

@@ -6,10 +6,15 @@ buildscript {
         maven { url "https://repo.spring.io/milestone" }
     }
     ext {
+        bootVersion = '2.1.0.BUILD-SNAPSHOT'
         springBootVersion = '2.0.3.RELEASE'
+        kotlinVersion = '1.2.51'
+        springFuVersion = '0.0.1.BUILD-SNAPSHOT'
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
     }
 }
 

@@ -1,7 +1,7 @@
 package com.github.corneil.reactivespring5.service;
 
+import com.github.corneil.model.LocationHistory;
 import com.github.corneil.reactivespring5.model.ExtendedLocationHistory;
-import com.github.corneil.reactivespring5.model.LocationHistory;
 import com.github.corneil.reactivespring5.repository.LocationHistoryRepository;
 import lombok.extern.slf4j.XSlf4j;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;

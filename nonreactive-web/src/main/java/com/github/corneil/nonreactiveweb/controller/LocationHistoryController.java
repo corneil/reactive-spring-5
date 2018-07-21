@@ -1,7 +1,8 @@
 package com.github.corneil.nonreactiveweb.controller;
 
+import com.github.corneil.model.LocationHistory;
 import com.github.corneil.nonreactiveweb.model.ExtendedLocationHistory;
-import com.github.corneil.nonreactiveweb.model.LocationHistory;
+
 import com.github.corneil.nonreactiveweb.service.LocationHistoryInterface;
 import lombok.extern.slf4j.XSlf4j;
 import org.springframework.web.bind.annotation.GetMapping;
