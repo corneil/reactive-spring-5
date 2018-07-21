@@ -46,3 +46,8 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'org.projectlombok:lombok'
 }
+
+task run (dependsOn: 'classes', type: JavaExec) {
+    main = 'com.github.corneil.load_generator.LoadGenerator'
+    classpath = sourceSets.main.runtimeClasspath
+}

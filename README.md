@@ -41,22 +41,40 @@ Start mongodb with `mongod --dbpath <folder>` with folder on a slow drive.
 This will allow for a pronounced difference between non-reactive and reactive tests.
 
 ### Populate Database
-Populate the database using: `./gradlew -Dtest.single=PopulateDatabaseManual :nonreactive-web:test`
+Populate the database using: 
+```bash
+./gradlew -Dtest.single=PopulateDatabaseManual :nonreactive-web:test
+```
+OR when using Spring Fu version 
+```bash
+http POST http://localhost:8080/load?count=5000
+```
 
 ### Run non-reactive version
-`./gradlew :nonreactive-web:bootRun`
+```bash
+./gradlew :nonreactive-web:bootRun
+```
 
 ### Run reactive version
-`./gradlew :reactive-web:bootRun`
+```bash
+./gradlew :reactive-web:bootRun
+```
 
 ### Run Kotlin Reactive version
-`./gradelw :reactive-kotlin:bootRun`
+```bash
+./gradelw :reactive-kotlin:bootRun
+```
 
 ### Run Spring Fu version
-`./gradlew :reactive-fu:bootRun`
+```bash
+./gradlew :reactive-fu:bootRun
+```
 
+Data can be loaded using
+```bash
+http POST http://localhost:8080/load?count=5000
+```
 ### Scripts
-
 
 The `scripts` folder contains scripts that use `curl` to perform measurements of the rest calls.
 
@@ -65,4 +83,10 @@ OR
 ```bash
 http http://localhost:8080/last30days
 http http://localhost:8080/extlast30days
+```
+
+### Generate Load
+
+```bash
+./gradlew :load-generator:run
 ```
