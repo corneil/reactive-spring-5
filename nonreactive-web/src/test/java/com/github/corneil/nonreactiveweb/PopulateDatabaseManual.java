@@ -30,7 +30,6 @@ public class PopulateDatabaseManual {
 	@Test
 	public void createEntries() {
 		LocalDateTime now = LocalDateTime.now();
-		final long thirtyDays = 30L * 24L * 3600L * 1000L;
 		double lastX = (random.nextGaussian() * 360.0) - 180.0;
 		double lastY = (random.nextGaussian() * 180.0) - 90.0;
 		LocalDateTime startTime = now.minusDays(random.nextInt(30));

@@ -39,7 +39,7 @@ val app = application {
             include { routes(ref()) }
         }
     }
-    mongodb()
+    mongodb("mongodb://user:password@localhost:27017/locs")
 }
 
 fun main(args: Array<String>) = app.run(await = true)

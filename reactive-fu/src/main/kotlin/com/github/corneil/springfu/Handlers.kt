@@ -13,7 +13,11 @@ import java.util.*
 
 class LocationHandler(val locationRepositry: LocationRepository) {
     companion object : KLogging()
-
+    fun load(request:ServerRequest): Mono<ServerResponse> {
+        val count = request.queryParam("count").orElse("1000").toInt()
+        logger.info { "load:$count" }
+        return ServerResponse.ok().body(locationRepositry.load(count))
+    }
     fun findLast30Days(request: ServerRequest): Mono<ServerResponse> {
         try {
             logger.info(">>findLast30Days")
