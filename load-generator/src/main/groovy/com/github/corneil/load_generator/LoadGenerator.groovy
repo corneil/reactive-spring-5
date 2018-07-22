@@ -40,7 +40,7 @@ static double average(Collection collection) {
     return (total / (double) collection.size()) / 1000000.0
 }
 
-def totalPermutations = 50
+def totalPermutations = 1000
 def permutations = [:]
 [1, 2, 5, 10, 20, 50, 100, 200].each {
     if (it < totalPermutations) {
@@ -51,7 +51,7 @@ def permutations = [:]
 println "Warming up"
 def lg = new LoadGeneratorClient()
 lg.invokeLoad(2)
-def count =  lg.countResults()
+def count = lg.countResults()
 println "$count entries found"
 long startTime = System.currentTimeMillis()
 permutations.each { entry ->

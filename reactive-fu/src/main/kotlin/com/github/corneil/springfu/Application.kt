@@ -20,7 +20,7 @@ val app = application {
     bean<LocationRepository>()
     bean<LocationHandler>()
     logging {
-        level(INFO)
+        level(WARN)
         level("org.springframework", DEBUG)
         level<DefaultListableBeanFactory>(WARN)
 
