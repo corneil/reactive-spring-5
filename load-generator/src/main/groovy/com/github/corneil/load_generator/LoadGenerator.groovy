@@ -42,9 +42,12 @@ static double average(Collection collection) {
 
 def totalPermutations = 1000
 def permutations = [:]
+
+def threadCount = []
 [1, 2, 5, 10, 20, 50, 100, 200].each {
     if (it < totalPermutations) {
         permutations.put(it, totalPermutations / it)
+        threadCount << it
     }
 }
 // warm up
@@ -54,9 +57,10 @@ lg.invokeLoad(2)
 def count = lg.countResults()
 println "$count entries found"
 long startTime = System.currentTimeMillis()
-permutations.each { entry ->
-    int clients = entry.key
-    int iterations = entry.value
+def totals = [:]
+def avgs = [:]
+threadCount.each { clients  ->
+    int iterations = permutations[clients]
     def averages = new ConcurrentHashMap()
     def threads = []
     println "Starting $clients clients for $iterations iterations"
@@ -74,5 +78,30 @@ permutations.each { entry ->
     }
     double totalTime = (double) (System.currentTimeMillis() - startTime) / 1000.0
     double avg = average(averages.values())
+    totals.put(clients, totalTime)
+    avgs.put(clients, avg)
     println String.format('Client=%s, Iterations=%d, Average=%.1fms, Total time=%.1fs', clients, iterations, avg, totalTime)
 }
+println()
+println 'Totals and Averages for Markdown'
+println()
+print '| Measure '
+threadCount.each { clients ->
+    print String.format('| %8s ', clients.toString())
+}
+println '|'
+print '|---------'
+threadCount.each {
+    print '|---------:'
+}
+println '|'
+print '| Totals  '
+threadCount.each { client ->
+    print String.format('| %8s ', String.format('%.1f', totals[client]))
+}
+println '|'
+print '| Average '
+threadCount.each { client ->
+    print String.format('| %8s ', String.format('%.1f', avgs[client]))
+}
+println '|'
