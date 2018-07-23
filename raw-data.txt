@@ -1,0 +1,107 @@
+Client=1, Iterations=1000, Average=32.5ms, Total time=32.6s
+Client=2, Iterations=500, Average=34.1ms, Total time=17.1s
+Client=5, Iterations=200, Average=45.3ms, Total time=9.1s
+Client=10, Iterations=100, Average=75.8ms, Total time=7.9s
+Client=20, Iterations=50, Average=152.0ms, Total time=7.9s
+Client=50, Iterations=20, Average=342.5ms, Total time=8.0s
+Client=100, Iterations=10, Average=617.2ms, Total time=9.6s
+Client=200, Iterations=5, Average=1395.3ms, Total time=8.7s
+
+Totals and Averages for Markdown
+
+| Type         | Measure |        1 |        2 |        5 |       10 |       20 |       50 |      100 |      200 |
+|--------------|---------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+|      WebMVC | Totals  |     32.6 |     17.1 |      9.1 |      7.9 |      7.9 |      8.0 |      9.6 |      8.7 |
+|      WebMVC | Average |     32.5 |     34.1 |     45.3 |     75.8 |    152.0 |    342.5 |    617.2 |   1395.3 |
+
+Output for CSV
+WebMVC,32.6,17.1,9.1,7.9,7.9,8.0,9.6,8.7
+WebMVC,32.5,34.1,45.3,75.8,152.0,342.5,617.2,1395.3
+
+
+Client=1, Iterations=1000, Average=45.3ms, Total time=45.3s
+Starting 2 clients for 500 iterations
+Waiting for completion
+Client=2, Iterations=500, Average=53.6ms, Total time=26.8s
+Starting 5 clients for 200 iterations
+Waiting for completion
+Client=5, Iterations=200, Average=68.9ms, Total time=13.8s
+Starting 10 clients for 100 iterations
+Waiting for completion
+Client=10, Iterations=100, Average=133.4ms, Total time=13.6s
+Starting 20 clients for 50 iterations
+Waiting for completion
+Client=20, Iterations=50, Average=205.6ms, Total time=11.0s
+Starting 50 clients for 20 iterations
+Waiting for completion
+Client=50, Iterations=20, Average=607.9ms, Total time=14.1s
+Starting 100 clients for 10 iterations
+Waiting for completion
+Client=100, Iterations=10, Average=941.2ms, Total time=11.7s
+Starting 200 clients for 5 iterations
+Waiting for completion
+Client=200, Iterations=5, Average=1570.7ms, Total time=13.3s
+
+Totals and Averages for Markdown
+
+| Type         | Measure |        1 |        2 |        5 |       10 |       20 |       50 |      100 |      200 |
+|--------------|---------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+|      WebFlux | Totals  |     45.3 |     26.8 |     13.8 |     13.6 |     11.0 |     14.1 |     11.7 |     13.3 |
+|      WebFlux | Average |     45.3 |     53.6 |     68.9 |    133.4 |    205.6 |    607.9 |    941.2 |   1570.7 |
+
+Output for CSV
+WebFlux,45.3,26.8,13.8,13.6,11.0,14.1,11.7,13.3
+WebFlux,45.3,53.6,68.9,133.4,205.6,607.9,941.2,1570.7
+
+Client=1, Iterations=1000, Average=42.2ms, Total time=42.2s
+Client=2, Iterations=500, Average=46.6ms, Total time=23.3s
+Client=5, Iterations=200, Average=67.0ms, Total time=13.5s
+Client=10, Iterations=100, Average=102.3ms, Total time=10.4s
+Client=20, Iterations=50, Average=194.2ms, Total time=10.1s
+Client=50, Iterations=20, Average=461.2ms, Total time=10.8s
+Client=100, Iterations=10, Average=723.8ms, Total time=11.2s
+Client=200, Iterations=5, Average=739.2ms, Total time=10.4s
+
+Totals and Averages for Markdown
+
+| Type         | Measure |        1 |        2 |        5 |       10 |       20 |       50 |      100 |      200 |
+|--------------|---------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+|    WebFluxKt | Totals  |     42.2 |     23.3 |     13.5 |     10.4 |     10.1 |     10.8 |     11.2 |     10.4 |
+|    WebFluxKt | Average |     42.2 |     46.6 |     67.0 |    102.3 |    194.2 |    461.2 |    723.8 |    739.2 |
+Output for CSV
+WebFluxKt,42.2,23.3,13.5,10.4,10.1,10.8,11.2,10.4
+WebFluxKt,42.2,46.6,67.0,102.3,194.2,461.2,723.8,739.2
+
+Client=1, Iterations=1000, Average=16.2ms, Total time=16.2s
+Starting 2 clients for 500 iterations
+Waiting for completion
+Client=2, Iterations=500, Average=16.3ms, Total time=8.2s
+Starting 5 clients for 200 iterations
+Waiting for completion
+Client=5, Iterations=200, Average=22.8ms, Total time=4.6s
+Starting 10 clients for 100 iterations
+Waiting for completion
+Client=10, Iterations=100, Average=36.3ms, Total time=3.8s
+Starting 20 clients for 50 iterations
+Waiting for completion
+Client=20, Iterations=50, Average=63.0ms, Total time=3.3s
+Starting 50 clients for 20 iterations
+Waiting for completion
+Client=50, Iterations=20, Average=190.9ms, Total time=4.6s
+Starting 100 clients for 10 iterations
+Waiting for completion
+Client=100, Iterations=10, Average=187.1ms, Total time=4.0s
+Starting 200 clients for 5 iterations
+Waiting for completion
+Client=200, Iterations=5, Average=517.2ms, Total time=3.8s
+
+Totals and Averages for Markdown
+
+| Type         | Measure |        1 |        2 |        5 |       10 |       20 |       50 |      100 |      200 |
+|--------------|---------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+|     SpringFu | Totals  |     16.2 |      8.2 |      4.6 |      3.8 |      3.3 |      4.6 |      4.0 |      3.8 |
+|     SpringFu | Average |     16.2 |     16.3 |     22.8 |     36.3 |     63.0 |    190.9 |    187.1 |    517.2 |
+
+Output for CSV
+SpringFu,16.2,8.2,4.6,3.8,3.3,4.6,4.0,3.8
+SpringFu,16.2,16.3,22.8,36.3,63.0,190.9,187.1,517.2
