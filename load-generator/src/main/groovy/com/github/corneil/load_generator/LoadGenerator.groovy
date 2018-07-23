@@ -40,9 +40,16 @@ static double average(Collection collection) {
     return (total / (double) collection.size()) / 1000000.0
 }
 
-def totalPermutations = 1000
+def totalPermutations = 50
 def permutations = [:]
-
+def label = "Unknown"
+for(int i = 0; i < args.length;i++) {
+    if(i==0) {
+        label = args[i]
+    } else if(i ==1) {
+        totalPermutations = args[i].toInteger()
+    }
+}
 def threadCount = []
 [1, 2, 5, 10, 20, 50, 100, 200].each {
     if (it < totalPermutations) {
@@ -56,10 +63,10 @@ def lg = new LoadGeneratorClient()
 lg.invokeLoad(2)
 def count = lg.countResults()
 println "$count entries found"
-long startTime = System.currentTimeMillis()
 def totals = [:]
 def avgs = [:]
 threadCount.each { clients  ->
+    long startTime = System.currentTimeMillis()
     int iterations = permutations[clients]
     def averages = new ConcurrentHashMap()
     def threads = []
@@ -85,23 +92,33 @@ threadCount.each { clients  ->
 println()
 println 'Totals and Averages for Markdown'
 println()
-print '| Measure '
+print '| Type         | Measure '
 threadCount.each { clients ->
     print String.format('| %8s ', clients.toString())
 }
 println '|'
-print '|---------'
+print '|--------------|---------'
 threadCount.each {
     print '|---------:'
 }
 println '|'
-print '| Totals  '
+print String.format('| %12s | Totals  ',label)
 threadCount.each { client ->
     print String.format('| %8s ', String.format('%.1f', totals[client]))
 }
 println '|'
-print '| Average '
+print String.format('| %12s | Average ',label)
 threadCount.each { client ->
     print String.format('| %8s ', String.format('%.1f', avgs[client]))
 }
 println '|'
+println()
+println 'Output for CSV'
+print "$label,"
+println threadCount.collect { client ->
+            String.format('%.1f', totals[client])
+        }.join(',')
+print "$label,"
+println threadCount.collect { client ->
+            String.format('%.1f', avgs[client])
+        }.join(',')
