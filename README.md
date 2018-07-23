@@ -95,12 +95,17 @@ http http://localhost:8080/extlast30days
 
 ## Performance Comparison
 
+The load generator is configured with a number of iterations and will then divide the work over a number of threads stepping up through 1, 2, 5, 10, 20, 50, 100, 200.
+ 
 The performance testing isn't exhaustive since is was done in a single machine.
+
+Average time per request.
 
 ![Average Times](img/chart-average.png)
 
-![Total Times](img/chart-totals.png)
+Total time to perform all iterations.
 
+![Total Times](img/chart-totals.png)
 
 ### Java WebMVC
 ```
