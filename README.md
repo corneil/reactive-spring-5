@@ -99,55 +99,24 @@ The load generator is configured with a number of iterations and will then divid
  
 The performance testing isn't exhaustive since is was done in a single machine.
 
-Average time per request.
-
-![Average Times](img/chart-average.png)
-
-Total time to perform all iterations.
+### Total time to perform iterations.
 
 ![Total Times](img/chart-totals.png)
 
-### Java WebMVC
-```
-Client=1, Iterations=1000, Average=31.1ms, Total time=31.1s
-Client=2, Iterations=500, Average=32.0ms, Total time=47.2s
-Client=5, Iterations=200, Average=42.2ms, Total time=55.7s
-Client=10, Iterations=100, Average=70.8ms, Total time=62.9s
-Client=20, Iterations=50, Average=137.7ms, Total time=70.3s
-Client=50, Iterations=20, Average=315.7ms, Total time=78.2s
-Client=100, Iterations=10, Average=258.2ms, Total time=85.7s
-Client=200, Iterations=5, Average=332.8ms, Total time=93.1s
-```
-### Java WebFlux
-```
-Client=1, Iterations=1000, Average=43.2ms, Total time=43.2s
-Client=2, Iterations=500, Average=45.4ms, Total time=66.0s
-Client=5, Iterations=200, Average=75.3ms, Total time=81.2s
-Client=10, Iterations=100, Average=105.2ms, Total time=91.8s
-Client=20, Iterations=50, Average=241.4ms, Total time=104.5s
-Client=50, Iterations=20, Average=480.7ms, Total time=115.3s
-Client=100, Iterations=10, Average=723.5ms, Total time=125.7s
-Client=200, Iterations=5, Average=1963.1ms, Total time=138.8s
-```
-### Kotlin WebFlux
-```
-Client=1, Iterations=1000, Average=40.8ms, Total time=40.8s
-Client=2, Iterations=500, Average=43.4ms, Total time=62.6s
-Client=5, Iterations=200, Average=62.5ms, Total time=75.2s
-Client=10, Iterations=100, Average=94.3ms, Total time=84.8s
-Client=20, Iterations=50, Average=180.9ms, Total time=94.3s
-Client=50, Iterations=20, Average=419.6ms, Total time=104.6s
-Client=100, Iterations=10, Average=615.4ms, Total time=115.4s
-Client=200, Iterations=5, Average=333.3ms, Total time=124.8s
-```
-### Spring Fu
-```
-Client=1, Iterations=1000, Average=15.5ms, Total time=15.5s
-Client=2, Iterations=500, Average=15.3ms, Total time=23.2s
-Client=5, Iterations=200, Average=20.5ms, Total time=27.4s
-Client=10, Iterations=100, Average=36.3ms, Total time=31.1s
-Client=20, Iterations=50, Average=69.2ms, Total time=34.9s
-Client=50, Iterations=20, Average=179.4ms, Total time=40.0s
-Client=100, Iterations=10, Average=294.8ms, Total time=44.2s
-Client=200, Iterations=5, Average=289.7ms, Total time=47.6s
-```
+| Type         | Measure |        1 |        2 |        5 |       10 |       20 |       50 |      100 |      200 |
+|--------------|---------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+|      WebMVC | Totals  |     32.6 |     17.1 |      9.1 |      7.9 |      7.9 |      8.0 |      9.6 |      8.7 |
+|      WebFlux | Totals  |     45.3 |     26.8 |     13.8 |     13.6 |     11.0 |     14.1 |     11.7 |     13.3 |
+|    WebFluxKt | Totals  |     42.2 |     23.3 |     13.5 |     10.4 |     10.1 |     10.8 |     11.2 |     10.4 |
+|     SpringFu | Totals  |     16.2 |      8.2 |      4.6 |      3.8 |      3.3 |      4.6 |      4.0 |      3.8 |
+
+### Average response time per request.
+
+![Average Times](img/chart-average.png)
+
+| Type         | Measure |        1 |        2 |        5 |       10 |       20 |       50 |      100 |      200 |
+|--------------|---------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+|      WebMVC | Average |     32.5 |     34.1 |     45.3 |     75.8 |    152.0 |    342.5 |    617.2 |   1395.3 |
+|      WebFlux | Average |     45.3 |     53.6 |     68.9 |    133.4 |    205.6 |    607.9 |    941.2 |   1570.7 |
+|    WebFluxKt | Average |     42.2 |     46.6 |     67.0 |    102.3 |    194.2 |    461.2 |    723.8 |    739.2 |
+|     SpringFu | Average |     16.2 |     16.3 |     22.8 |     36.3 |     63.0 |    190.9 |    187.1 |    517.2 |
