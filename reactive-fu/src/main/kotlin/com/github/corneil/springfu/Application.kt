@@ -3,7 +3,8 @@ package com.github.corneil.springfu
 import org.springframework.beans.factory.support.DefaultListableBeanFactory
 import org.springframework.fu.application
 import org.springframework.fu.module.data.mongodb.mongodb
-import org.springframework.fu.module.logging.LogLevel.*
+import org.springframework.fu.module.logging.LogLevel.DEBUG
+import org.springframework.fu.module.logging.LogLevel.WARN
 import org.springframework.fu.module.logging.level
 import org.springframework.fu.module.logging.logback.consoleAppender
 import org.springframework.fu.module.logging.logback.debug
@@ -16,13 +17,14 @@ import org.springframework.fu.module.webflux.webflux
 import org.springframework.fu.ref
 import java.io.File
 
-val app = application {
-    bean<LocationRepository>()
+fun main(args: Array<String>) = application {
+    bean<LocationHistoryRepository>()
+    bean<LocationHistoryService>()
     bean<LocationHandler>()
     logging {
         level(WARN)
-        level("org.springframework", DEBUG)
-        level<DefaultListableBeanFactory>(WARN)
+        // level("org.springframework", DEBUG)
+        // level<DefaultListableBeanFactory>(WARN)
 
         logback {
             debug(true)
@@ -36,10 +38,12 @@ val app = application {
             codecs {
                 jackson()
             }
-            include { routes(ref()) }
+            router {
+                val locHandler = ref<LocationHandler>()
+                GET("/last30days", locHandler::findLast30Days)
+                GET("/extlast30days", locHandler::findExtendedLast30Days)
+            }
         }
     }
     mongodb("mongodb://user:password@localhost:27017/locs")
-}
-
-fun main(args: Array<String>) = app.run(await = true)
+}.run(await = true)

@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.util.*
 
-class LocationRepository(private val template: ReactiveMongoTemplate) {
+class LocationHistoryRepository(private val template: ReactiveMongoTemplate) {
     companion object : KLogging()
 
     fun count() = template.count<LocationHistory>()

@@ -33,7 +33,7 @@ public class PopulateDatabaseManual {
 		double lastX = (random.nextGaussian() * 360.0) - 180.0;
 		double lastY = (random.nextGaussian() * 180.0) - 90.0;
 		LocalDateTime startTime = now.minusDays(random.nextInt(30));
-		final int entries = 1000;
+		final int entries = 10;
 		List<LocationHistory> items = new ArrayList<>();
 		for (int i = 0; i < entries; i++) {
 

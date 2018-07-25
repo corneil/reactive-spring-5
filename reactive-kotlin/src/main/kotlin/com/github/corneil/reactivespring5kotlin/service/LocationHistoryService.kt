@@ -26,7 +26,9 @@ class LocationHistoryService(val historyRepository: LocationHistoryRepository) :
 	override fun findAndConvert(startDate: Date, endDate: Date): Flux<ExtendedLocationHistory> {
 		try {
 			logger.info(">>findAndConvert")
-			return historyRepository.findByTimestampBetween(startDate, endDate).flatMap { item -> Mono.just(convertToExtended(item)) }
+			return historyRepository
+                    .findByTimestampBetween(startDate, endDate)
+                    .map { convertToExtended(it) }
 		} finally {
 			logger.info("<<findAndConvert")
 		}
@@ -36,8 +38,8 @@ class LocationHistoryService(val historyRepository: LocationHistoryRepository) :
 		val x = item.location.x
 		val y = item.location.y
 		return ExtendedLocationHistory(item.id,
-			item.timestamp,
-			GeoJsonPoint(y, x),
-			String.format("Location %f, %f", x, y))
+                    item.timestamp,
+                    GeoJsonPoint(y, x),
+                    String.format("Location %f, %f", x, y))
 	}
 }

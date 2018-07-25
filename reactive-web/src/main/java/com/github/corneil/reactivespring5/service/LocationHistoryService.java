@@ -7,7 +7,6 @@ import lombok.extern.slf4j.XSlf4j;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.Date;
 
@@ -34,8 +33,9 @@ public class LocationHistoryService implements LocationHistoryInterface {
 	public Flux<ExtendedLocationHistory> findAndConvert(Date startDate, Date endDate) {
 		try {
 			log.info(">>findAndConvert");
-			return historyRepository.findByTimestampBetween(startDate, endDate)
-				.flatMap(item -> Mono.just(convertToExtended(item)));
+			return historyRepository
+				.findByTimestampBetween(startDate, endDate)
+				.map(item -> convertToExtended(item));
 		} finally {
 			log.info("<<findAndConvert");
 		}
@@ -44,7 +44,8 @@ public class LocationHistoryService implements LocationHistoryInterface {
 	private static ExtendedLocationHistory convertToExtended(LocationHistory item) {
 		final double x = item.getLocation().getX();
 		final double y = item.getLocation().getY();
-		return new ExtendedLocationHistory(item.getId(),
+		return new ExtendedLocationHistory(
+			item.getId(),
 			item.getTimestamp(),
 			new GeoJsonPoint(y, x),
 			String.format("Location %f, %f", x, y));

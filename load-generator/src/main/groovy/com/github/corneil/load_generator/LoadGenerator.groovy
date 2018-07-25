@@ -6,7 +6,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import java.util.concurrent.ConcurrentHashMap
 
 class LoadGeneratorClient {
-    WebClient client = WebClient.create('http://localhost:8080/extlast30days')
+    WebClient client = WebClient.create('http://localhost:8080/last30days')
 
     int countResults() {
 
@@ -57,6 +57,7 @@ def threadCount = []
         threadCount << it
     }
 }
+println "Label: $label"
 // warm up
 println "Warming up"
 def lg = new LoadGeneratorClient()

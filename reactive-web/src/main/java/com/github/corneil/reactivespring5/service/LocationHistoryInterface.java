@@ -8,6 +8,5 @@ import java.util.Date;
 
 public interface LocationHistoryInterface {
 	Flux<LocationHistory> findByDates(Date startDate, Date endDate);
-
 	Flux<ExtendedLocationHistory> findAndConvert(Date startDate, Date endDate);
 }

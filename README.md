@@ -46,7 +46,9 @@ Populate the database using:
 ```bash
 ./gradlew -Dtest.single=PopulateDatabaseManual :nonreactive-web:test
 ```
-OR when using Spring Fu version 
+
+OR when using Spring Fu version
+ 
 ```bash
 http POST http://localhost:8080/load?count=1000
 ```
@@ -71,10 +73,6 @@ http POST http://localhost:8080/load?count=1000
 ./gradlew :reactive-fu:bootRun
 ```
 
-Data can be loaded using
-```bash
-http POST http://localhost:8080/load?count=1000
-```
 ### Scripts
 
 The `scripts` folder contains scripts that use `curl` to perform measurements of the rest calls.
@@ -89,13 +87,13 @@ http http://localhost:8080/extlast30days
 ### Generate Load
 
 ```bash
-./gradlew :load-generator:run
+java -jar load-generator/build/libs/load-generator-1.0-SNAPSHOT.jar <Label> <Iterations>
 ```
 
 
 ## Performance Comparison
 
-The load generator is configured with a number of iterations and will then divide the work over a number of threads stepping up through 1, 2, 5, 10, 20, 50, 100, 200.
+The load generator is invoked with a number of iterations and will then divide the work over a number of threads stepping up through 1, 2, 5, 10, 20, 50, 100, 200.
  
 The performance testing isn't exhaustive since is was done in a single machine.
 
